@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -62,7 +62,7 @@ const Login = () => {
       alert(error.message);
       setOpen(true);
     }
-  }, [userNameInput, passwordInput]);
+  }, [userNameInput, passwordInput,dispatch,navigate]);
 
   const submitHandler = event => {
     event.preventDefault();
@@ -99,7 +99,7 @@ const Login = () => {
     <>
       <Snackbar
         anchorOrigin={{
-          vertical: 'buttom',
+          vertical: 'bottom',
           horizontal: 'center',
         }}
         open={open}

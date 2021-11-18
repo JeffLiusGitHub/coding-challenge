@@ -14,7 +14,7 @@ const Welcome = () => {
       if(isLogin){
           setOpen(true)
       }
-  },[])
+  },[isLogin])
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -25,7 +25,7 @@ const Welcome = () => {
   return <>{userName && <h1>welcome {userName}!</h1>}
     <Snackbar
         anchorOrigin={{
-          vertical: 'buttom',
+          vertical: 'bottom',
           horizontal: 'center',
         }}
         open={open}

@@ -13,7 +13,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { changeUserName, changeFullName } from '../store/session-slice';
-import { isLogin, isLogout } from '../store/status-slice';
+import { isLogout } from '../store/status-slice';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1
