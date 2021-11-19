@@ -12,5 +12,5 @@ ReactDOM.render(
       <App />
     </Provider>
   </BrowserRouter>,
-  document.getElementById('root')
+  document.getElementById('root') || document.createElement('div')
 );

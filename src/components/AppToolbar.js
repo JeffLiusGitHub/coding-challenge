@@ -9,11 +9,11 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Button from '@material-ui/core/Button';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { changeUserName, changeFullName } from '../store/session-slice';
-import { isLogout } from '../store/status-slice';
+// import { useSelector } from 'react-redux';
+// import { useNavigate } from 'react-router-dom';
+// import { useDispatch } from 'react-redux';
+// import { changeUserName, changeFullName } from '../store/session-slice';
+// import { isLogout } from '../store/status-slice';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1
@@ -23,10 +23,10 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function AppToolbar() {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const isLoggedIn = useSelector(state => state.status.isLogin);
+function AppToolbar({isLoggedIn,onLogin,onLogout}) {
+  // const navigate = useNavigate();
+  // const dispatch = useDispatch();
+  // const isLoggedIn = useSelector(state => state.status.isLogin);
   const userIconRef = useRef(null);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const classes = useStyles();
@@ -39,15 +39,16 @@ function AppToolbar() {
     setUserMenuOpen(false);
   };
 
-const onLogin =()=>{
-  navigate('/login');
-}
+  // console.log(isLoggedIn)
+// const onLogin =()=>{
+//   navigate('/login');
+// }
 
-const onLogout =()=>{
-  dispatch(changeUserName(null));
-  dispatch(changeFullName(null));
-  dispatch(isLogout());
-}
+// const onLogout =()=>{
+//   dispatch(changeUserName(null));
+//   dispatch(changeFullName(null));
+//   dispatch(isLogout());
+// }
   return (
     <AppBar position='static'>
       <Toolbar>

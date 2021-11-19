@@ -4,10 +4,13 @@ import AppToolbar from '../components/AppToolbar';
 
 
 const Layout = props => {
-    
+    // console.log(props.isLoggedIn)
   return (
     <Fragment>
-      <AppToolbar     
+      <AppToolbar   
+          isLoggedIn={props.isLoggedIn}
+          onLogin={props.onLogin}
+          onLogout={props.onLogout}  
       />
       <main>{props.children}</main>
     </Fragment>
@@ -15,6 +18,3 @@ const Layout = props => {
 };
 
 export default Layout;
- // isLoggedIn={isLoggedIn}
-        // onLogin={handleLogin}
-        // onLogout={logout}

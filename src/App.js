@@ -1,14 +1,38 @@
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+
 import { Route, Routes} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { changeUserName, changeFullName } from './store/session-slice';
+import { isLogout } from './store/status-slice';
 import Layout from './layout/Layout';
 import Welcome from './containers/Welcome';
 import Login from './containers/Login';
 import NotFound from './containers/NotFound';
 
+
+
 const App = () => {
-  // const isLogin = useSelector(state => state.status.isLogin);
+
+ const isLoggedIn = useSelector(state => state.status.isLogin);
+ console.log(isLoggedIn);
+ const navigate = useNavigate();
+ const dispatch = useDispatch();
+ const onLogin =()=>{
+  navigate('/login');
+}
+
+const onLogout =()=>{
+  dispatch(changeUserName(null));
+  dispatch(changeFullName(null));
+  dispatch(isLogout());
+}
+
   return (
-    <Layout>
+    <Layout 
+    isLoggedIn={isLoggedIn}
+    onLogin={onLogin}
+    onLogout={onLogout}>
       <main>
         <Routes>
           {/* { isLogin && (<Route path="/" element={<Welcome />} />)} */}
