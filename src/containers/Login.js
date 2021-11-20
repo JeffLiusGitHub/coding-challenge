@@ -16,9 +16,13 @@ import { isLogin } from '../store/status-slice';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
 
-const Login = () => {
+
+import { render } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
+
+const Login = (props) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [userNameInput, setUserNameInput] = useState('');
   const [passwordInput, setpasswordInput] = useState('');
   const [userNameIsInValid, setUserNameIsInValid] = useState(false);
@@ -53,7 +57,7 @@ const Login = () => {
         dispatch(changeUserName(username));
         dispatch(changeFullName(fullname));
         dispatch(isLogin());
-        navigate('/');
+        props.navigate('/');
       } else {
         setOpen(true);
         console.log(response);
@@ -62,7 +66,7 @@ const Login = () => {
       alert(error.message);
       setOpen(true);
     }
-  }, [userNameInput, passwordInput,dispatch,navigate]);
+  }, [userNameInput, passwordInput,dispatch]);
 
   const submitHandler = event => {
     event.preventDefault();
@@ -139,14 +143,14 @@ const Login = () => {
                 margin="normal"
                 required
                 fullWidth
-                id="email"
+                id="username"
                 label="username"
-                name="email"
-                autoComplete="email"
+                name="username"
+                autoComplete="username"
                 autoFocus
               />
               {userNameIsInValid && (
-                <Typography component="h8" variant="h8" color="red">
+                <Typography component="h8" variant="h6" color="red">
                   username cannot be empty
                 </Typography>
               )}
@@ -161,10 +165,10 @@ const Login = () => {
                 label="password"
                 type="password"
                 id="password"
-                autoComplete="current-password"
+                autoComplete="password"
               />
               {passwordIsInValid && (
-                <Typography component="h8" variant="h8" color="red">
+                <Typography component="h8" variant="h6" color="red">
                   password cannot be empty
                 </Typography>
               )}

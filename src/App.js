@@ -15,7 +15,7 @@ import NotFound from './containers/NotFound';
 const App = () => {
 
  const isLoggedIn = useSelector(state => state.status.isLogin);
- console.log(isLoggedIn);
+//  console.log(isLoggedIn);
  const navigate = useNavigate();
  const dispatch = useDispatch();
  const onLogin =()=>{
@@ -37,7 +37,7 @@ const onLogout =()=>{
         <Routes>
           {/* { isLogin && (<Route path="/" element={<Welcome />} />)} */}
           <Route path="/" element={<Welcome />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login navigate={navigate} />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </main>
