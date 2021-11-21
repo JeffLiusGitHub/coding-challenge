@@ -9,24 +9,17 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Button from '@material-ui/core/Button';
-// import { useSelector } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
-// import { useDispatch } from 'react-redux';
-// import { changeUserName, changeFullName } from '../store/session-slice';
-// import { isLogout } from '../store/status-slice';
-const useStyles = makeStyles((theme) => ({
+
+const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   title: {
-    flexGrow: 1
-  }
+    flexGrow: 1,
+  },
 }));
 
-function AppToolbar({isLoggedIn,onLogin,onLogout}) {
-  // const navigate = useNavigate();
-  // const dispatch = useDispatch();
-  // const isLoggedIn = useSelector(state => state.status.isLogin);
+function AppToolbar({ isLoggedIn, onLogin, onLogout }) {
   const userIconRef = useRef(null);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const classes = useStyles();
@@ -39,61 +32,68 @@ function AppToolbar({isLoggedIn,onLogin,onLogout}) {
     setUserMenuOpen(false);
   };
 
-  // console.log(isLoggedIn)
-// const onLogin =()=>{
-//   navigate('/login');
-// }
+  const icon = (
+    <IconButton
+      aria-label="user icon"
+      aria-controls="user-menu"
+      aria-haspopup="true"
+      color="inherit"
+      onClick={handleClickUserMenu}
+      innerRef={userIconRef}
+    >
+      <AccountCircle />
+    </IconButton>
+  );
+  const logoutMenu = (
+    <Menu
+      anchorEl={userIconRef.current}
+      anchorOrigin={{
+        vertical: 'bottom',
+        horizontal: 'right',
+      }}
+      aria-label="user menu"
+      getContentAnchorEl={null}
+      id="user-menu"
+      onClose={handleCloseUserMenu}
+      open={userMenuOpen}
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+    >
+      <MenuItem aria-label="logout" onClick={onLogout}>
+        Logout
+      </MenuItem>
+    </Menu>
+  );
 
-// const onLogout =()=>{
-//   dispatch(changeUserName(null));
-//   dispatch(changeFullName(null));
-//   dispatch(isLogout());
-// }
+  const loginButton = (
+    <Button color="inherit" aria-label="login" onClick={onLogin}>
+      Login
+    </Button>
+  );
   return (
-    <AppBar position='static'>
+    <AppBar position="static">
       <Toolbar>
         <img
-          alt='intelligence bank logo'
-          src='/ib-logo.png'
-          style={{ width: 48,
-            //  height: 48,
-              paddingRight: 12 }}
+          alt="intelligence bank logo"
+          src="/ib-logo.png"
+          style={{
+            width: 48,
+            paddingRight: 12,
+          }}
         />
-        <Typography variant='h6' className={classes.title}>
+        <Typography variant="h6" className={classes.title}>
           Intelligence Bank Coding Exercise
         </Typography>
         {isLoggedIn ? (
           <>
-            <IconButton
-              aria-label='user icon'
-              aria-controls='user-menu'
-              aria-haspopup='true'
-              color='inherit'
-              onClick={handleClickUserMenu}
-              innerRef={userIconRef}
-            >
-              <AccountCircle />
-            </IconButton>
-            <Menu
-              anchorEl={userIconRef.current}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'right'
-              }}
-              aria-label='user menu'
-              getContentAnchorEl={null}
-              id='user-menu'
-              onClose={handleCloseUserMenu}
-              open={userMenuOpen}
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right'
-              }}
-            >
-              <MenuItem aria-label='logout' onClick={onLogout}>Logout</MenuItem>
-            </Menu>
+            {icon}
+            {logoutMenu}
           </>
-        ) : <Button color='inherit' aria-label='login' onClick={onLogin}>Login</Button>}
+        ) : (
+          <>{loginButton}</>
+        )}
       </Toolbar>
     </AppBar>
   );
@@ -102,7 +102,7 @@ function AppToolbar({isLoggedIn,onLogin,onLogout}) {
 AppToolbar.propTypes = {
   isLoggedIn: bool.isRequired,
   onLogout: func.isRequired,
-  onLogin: func.isRequired
+  onLogin: func.isRequired,
 };
 
 export default AppToolbar;

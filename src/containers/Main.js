@@ -13,12 +13,11 @@ function Main({ isLoggedIn, logout, push }) {
 
   return (
     <>
-    <AppToolbar
-      isLoggedIn={isLoggedIn}
-      onLogin={handleLogin}
-      onLogout={logout}
-    />
-
+      <AppToolbar
+        isLoggedIn={isLoggedIn}
+        onLogin={handleLogin}
+        onLogout={logout}
+      />
     </>
   );
 }
@@ -26,19 +25,19 @@ function Main({ isLoggedIn, logout, push }) {
 Main.propTypes = {
   isLoggedIn: bool.isRequired,
   logout: func.isRequired,
-  push: func.isRequired
+  push: func.isRequired,
 };
 
 const mapStateToProps = state => {
   return {
-    isLoggedIn: !!state.getIn(['session', 'username'])
+    isLoggedIn: !!state.getIn(['session', 'username']),
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     logout: () => dispatch(SESSION_ACTIONS.LOGOUT),
-    push: path => dispatch(push(path))
+    push: path => dispatch(push(path)),
   };
 };
 

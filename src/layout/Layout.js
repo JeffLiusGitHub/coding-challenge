@@ -1,19 +1,20 @@
-import { Fragment } from 'react';
-
 import AppToolbar from '../components/AppToolbar';
-
-
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+const theme = createTheme();
 const Layout = props => {
-    // console.log(props.isLoggedIn)
   return (
-    <Fragment>
-      <AppToolbar   
-          isLoggedIn={props.isLoggedIn}
-          onLogin={props.onLogin}
-          onLogout={props.onLogout}  
+    <>
+      <AppToolbar
+        isLoggedIn={props.isLoggedIn}
+        onLogin={props.onLogin}
+        onLogout={props.onLogout}
       />
-      <main>{props.children}</main>
-    </Fragment>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <main>{props.children}</main>
+      </ThemeProvider>
+    </>
   );
 };
 
