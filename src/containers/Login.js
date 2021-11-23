@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
@@ -27,7 +27,7 @@ const Login = () => {
     setpasswordInput(event.target.value);
   };
 
-  const fetchHandler = useCallback(async () => {
+  const fetchHandler = async () => {
     try {
       const response = await fetch('http://localhost:3001/api/login', {
         method: 'POST',
@@ -53,7 +53,7 @@ const Login = () => {
       alert(error.message);
       dispatch(isOpen());
     }
-  }, [userNameInput, passwordInput, dispatch, navigate]);
+  };
 
   const submitHandler = event => {
     event.preventDefault();
